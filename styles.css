@@ -1,0 +1,191 @@
+* { box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, "Segoe UI", Arial, sans-serif;
+  font-size: 11pt;
+  color: #111;
+  background: #f4f4f6;
+  margin: 0;
+  padding: 0;
+}
+
+a { color: #1f4e90; }
+
+.app-header {
+  background: #111;
+  color: #fff;
+  padding: 24px 32px 18px;
+  border-bottom: 4px solid #d4b400;
+}
+.app-header h1 { margin: 0 0 4px 0; font-size: 22pt; }
+.app-header .subtitle { font-size: 10pt; opacity: 0.85; }
+
+.app-main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px;
+}
+
+.app-footer {
+  text-align: center;
+  font-size: 9pt;
+  color: #666;
+  padding: 18px;
+  border-top: 1px solid #ddd;
+  background: #fff;
+}
+
+/* Dropzone */
+.dropzone {
+  border: 3px dashed #999;
+  border-radius: 8px;
+  padding: 60px 24px;
+  text-align: center;
+  background: #fff;
+  transition: all 0.2s ease;
+}
+.dropzone.dragging {
+  border-color: #1f4e90;
+  background: #eef5ff;
+}
+.dz-icon { font-size: 48pt; margin-bottom: 12px; }
+.dz-text { font-size: 14pt; margin-bottom: 16px; }
+.dz-or { display: block; color: #888; margin: 8px 0; font-size: 10pt; }
+.dz-button {
+  display: inline-block;
+  padding: 12px 28px;
+  background: #111;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 11pt;
+  font-weight: 500;
+}
+.dz-button:hover { background: #333; }
+.dz-help { font-size: 9.5pt; color: #888; margin-top: 24px; }
+
+/* Loading */
+#loading { text-align: center; padding: 60px 24px; }
+.loading-spinner {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 4px solid #eee;
+  border-top-color: #1f4e90;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 18px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Error */
+.error {
+  background: #fff;
+  border-left: 4px solid #c00;
+  padding: 16px 20px;
+  border-radius: 4px;
+  color: #800;
+}
+
+/* Results */
+.results {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  padding: 32px;
+  margin-top: 16px;
+}
+.results-actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #eee;
+}
+.btn {
+  padding: 10px 20px;
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 10.5pt;
+  font-weight: 500;
+}
+.btn:hover { background: #333; }
+.btn-secondary {
+  background: #fff;
+  color: #111;
+  border: 1px solid #ccc;
+}
+.btn-secondary:hover { background: #f5f5f5; }
+
+/* Result content */
+.result h1 {
+  font-size: 16pt;
+  margin: 0 0 4px 0;
+  border-bottom: 2px solid #000;
+  padding-bottom: 6px;
+}
+.result h2 {
+  font-size: 12pt;
+  margin: 22px 0 8px 0;
+  background: #111;
+  color: #fff;
+  padding: 5px 10px;
+}
+.result .meta {
+  margin: 8px 0 14px 0;
+  font-size: 10pt;
+}
+.result .meta div { margin: 2px 0; }
+.result .meta strong { display: inline-block; min-width: 110px; }
+.result table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 4px 0 12px 0;
+  font-size: 10pt;
+}
+.result th, .result td {
+  border: 1px solid #555;
+  padding: 5px 8px;
+  text-align: left;
+  vertical-align: top;
+}
+.result th {
+  background: #e8e8e8;
+  font-weight: bold;
+}
+.result td.cab { width: 60px; text-align: center; font-weight: bold; }
+.result td.code { width: 200px; font-family: Consolas, "Courier New", monospace; font-size: 9.5pt; }
+.result td.qty { width: 60px; text-align: center; }
+.result td.amount { text-align: right; font-family: Consolas, "Courier New", monospace; }
+.result .badge-uncertain { background: #fff7d6; color: #6b5500; padding: 1px 6px; border-radius: 3px; font-size: 9pt; }
+.result .note {
+  background: #fff7d6;
+  border: 1px solid #d4b400;
+  padding: 10px 14px;
+  margin: 14px 0;
+  font-size: 10pt;
+}
+.result .footer {
+  margin-top: 18px;
+  padding-top: 8px;
+  border-top: 1px solid #999;
+  font-size: 8.5pt;
+  color: #555;
+}
+
+.hidden { display: none !important; }
+
+/* Print */
+@page { size: letter; margin: 0.5in; }
+@media print {
+  body { background: #fff; }
+  .app-header, .app-footer, .no-print, .dropzone { display: none !important; }
+  .app-main { padding: 0; max-width: none; }
+  .results { box-shadow: none; padding: 0; margin: 0; }
+  .result h2 { page-break-after: avoid; }
+  .result tr { page-break-inside: avoid; }
+  .result thead { display: table-header-group; }
+}

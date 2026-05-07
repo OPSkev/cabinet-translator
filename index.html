@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cabinet Order Translator — E.F. San Juan</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="app-header">
+  <h1>Cabinet Order Translator</h1>
+  <div class="subtitle">E.F. San Juan — paste/drop a Shiloh order PDF, get a plain-English translation.</div>
+</header>
+
+<main class="app-main">
+
+  <section id="dropzone" class="dropzone">
+    <div class="dz-icon">📄</div>
+    <div class="dz-text">Drop a Shiloh order confirmation PDF here<br><span class="dz-or">or</span></div>
+    <label class="dz-button">
+      Choose PDF
+      <input type="file" id="fileInput" accept="application/pdf" hidden>
+    </label>
+    <div class="dz-help">Works with W.W. Wood Products / Shiloh order confirmations. Other lines coming.</div>
+  </section>
+
+  <section id="loading" class="hidden">
+    <div class="loading-spinner"></div>
+    <div>Reading PDF and translating codes…</div>
+  </section>
+
+  <section id="error" class="error hidden"></section>
+
+  <section id="results" class="results hidden">
+    <div class="results-actions no-print">
+      <button id="printBtn" class="btn">Print / Save as PDF</button>
+      <button id="copyHtmlBtn" class="btn btn-secondary">Copy HTML</button>
+      <button id="newBtn" class="btn btn-secondary">Translate Another</button>
+    </div>
+    <div id="resultsContent"></div>
+  </section>
+
+</main>
+
+<footer class="app-footer no-print">
+  <div>v1 — built 2026-05-07 — covers Shiloh (W.W. Wood Products). Knowledge from <a href="https://github.com/OPSkev" target="_blank" rel="noopener">cabinet-kb</a>.</div>
+  <div>Kevin Snyder — questions / missing codes → Kevin</div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+  // Configure PDF.js worker
+  if (typeof pdfjsLib !== 'undefined') {
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  }
+</script>
+<script src="app.js"></script>
+
+</body>
+</html>
