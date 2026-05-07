@@ -13,9 +13,11 @@ Web tool for E.F. San Juan that translates Shiloh / W.W. Wood Products cabinet o
 
 ## Coverage
 
-**v1:** Shiloh Cabinetry (W.W. Wood Products) — framed line, catalog v34.2.0 (Jan 2026)
-
-**Coming:** Eclipse, Dura Supreme (Crestwood + Bria)
+**v2:**
+- Shiloh Cabinetry (W.W. Wood Products) — framed, catalog v34.2.0 (Jan 2026)
+- Eclipse Cabinetry (W.W. Wood Products) — frameless, catalog v8.8.0 (Jan 2026)
+- Dura Supreme — Crestwood (CW) — framed, 2024-06-27
+- Dura Supreme — Bria (BR) — frameless / European, 2024-06-27
 
 ## Files
 
@@ -24,7 +26,7 @@ Web tool for E.F. San Juan that translates Shiloh / W.W. Wood Products cabinet o
 | `index.html` | Drop zone + result viewer |
 | `app.js` | PDF parsing, code lookup, render |
 | `styles.css` | Print-friendly styles |
-| `shiloh-kb.json` | Compiled cabinet knowledge base |
+| `cabinet-kb.json` | Compiled multi-line cabinet knowledge base |
 
 ## Updating the KB
 

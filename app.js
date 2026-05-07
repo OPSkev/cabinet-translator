@@ -20,7 +20,7 @@
   const newBtn = document.getElementById('newBtn');
 
   // ---------- Init ----------
-  fetch('shiloh-kb.json')
+  fetch('cabinet-kb.json')
     .then(r => r.json())
     .then(data => { KB = data; })
     .catch(err => showError('Failed to load knowledge base: ' + err.message));
@@ -145,9 +145,17 @@
 
   function identifyLine(text) {
     const t = text.toLowerCase();
-    if (t.includes('shiloh') || t.includes('w w wood products') || t.includes('wwinc.com')) return 'shiloh';
-    if (t.includes('eclipse cabinetry')) return 'eclipse';
-    if (t.includes('dura supreme')) return 'dura-supreme';
+    // Order matters: more specific first (Bria/Crestwood before generic Dura)
+    if (t.includes('shiloh cabinetry') || t.includes('shiloh') && t.includes('wwinc')) return 'shiloh';
+    if (t.includes('eclipse cabinetry') || t.includes('eclipsecabinetry.com')) return 'eclipse';
+    if (t.includes('bria') && t.includes('dura')) return 'dura-bria';
+    if (t.includes('crestwood') && t.includes('dura')) return 'dura-crestwood';
+    if (t.includes('dura supreme')) return 'dura-crestwood'; // default Dura → Crestwood (more common)
+    if (t.includes('w w wood products') || t.includes('wwinc.com')) {
+      // W.W. Wood — could be Shiloh or Eclipse; try door style hints
+      if (t.includes('metro') || t.includes('eclipse')) return 'eclipse';
+      return 'shiloh';
+    }
     return 'unknown';
   }
 
